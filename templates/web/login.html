@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Lodge</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'web/css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'web/css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'web/css/responsive.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container  ">
+          <a class="navbar-brand" href="index.html">
+            <img src="{% static 'web/images/shoe-mart.png' %}" alt="">
+            <span>
+              SHOE MART
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link text-dark" href="{% url 'web:index' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="{% url 'web:about' %}"> About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="{% url 'web:shoemart' %}">shoes </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="{% url 'web:contact' %}">Contact us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="{% url 'web:login' %}">signup</a>
+                </li>
+              </ul>
+
+            </div>
+<form method="post">
+    {% csrf_token %}
+    <div class="account__form">
+        <div class="input__box">
+            <label>Username<span>*</span></label>
+            <input type="text" name="username" required>
+        </div>
+        <div class="input__box">
+            <label>Password<span>*</span></label>
+            <input type="password" name="password" required>
+        </div>
+        <div class="form__btn">
+            <button>Login</button>
+            <label class="label-for-checkbox">
+                
+            </label>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,370 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Lodge</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'web/css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'web/css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'web/css/responsive.css' %}" rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="index.html">
+            <img src="{% static 'web/images/shoe-mart.png' %}" alt="">
+            <span>
+              SHOE MART
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'web:index' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'web:about' %}"> About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'web:shoemart' %}">shoes </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'web:contact' %}">Contact us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Login</a>
+                </li>
+              </ul>
+
+            </div>
+            <div class="quote_btn-container ">
+              <a href="">
+                <img src="{% static 'web/images/cart.png' %}" alt="">
+                <div class="cart_number">
+                  0
+                </div>
+              </a>
+              <form class="form-inline">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+  <!-- item section -->
+
+  <div class="item_section layout_padding2">
+    <div class="container">
+      <div class="item_container">
+        <div class="box">
+          <div class="price">
+            <h6>
+              Best quality
+            </h6>
+          </div>
+          <div class="img-box">
+            <img src="{% static 'web/images/pexels-skylar-kang-6046212-removebg-preview.png' %}" alt="">
+          </div>
+          <div class="name">
+            <h5>
+              Heels
+            </h5>
+          </div>
+        </div>
+        <div class="box">
+          <div class="price">
+            <h6>
+              Best quality
+            </h6>
+          </div>
+          <div class="img-box">
+            <img src="{% static 'web/images/pexels-bella-zhong-5383294-removebg-preview.png' %}" alt="">
+          </div>
+          <div class="name">
+            <h5>
+              Heels
+            </h5>
+          </div>
+        </div>
+        <div class="box">
+          <div class="price">
+            <h6>
+              Best quality
+            </h6>
+          </div>
+          <div class="img-box">
+            <img src="{% static 'web/images/pexels-skylar-kang-6046184-removebg-preview.png' %}" alt="">
+          </div>
+          <div class="name">
+            <h5>
+              Heels
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- end item section -->
+
+
+  <!-- price section -->
+
+  <section class="price_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Our New Price
+        </h2>
+      </div>
+      <div class="price_container">
+        {% for shopping in shopping %}
+        <div class="box">
+            <div class="name">
+                <h6>{{ shopping.name }}</h6>
+            </div>
+            <div class="img-box">
+                <img src="{{ shopping.image.url }}" alt="">
+            </div>
+            <div class="detail-box">
+                <h5>$<span>{{ shopping.price }}</span></h5>
+                <a href="">Buy Now</a>
+            </div>
+        </div>
+    {% endfor %}
+    
+    <form action="{% url 'web:shoemart' %}" method="GET">
+        <div class="shop-toolbar__shorter">
+            <select class="short-select nice-select" name="language">
+                <option value="" {% if not request.GET.language %}selected{% endif %}>All Languages</option>
+                <option value="eng" {% if request.GET.language == 'eng' %}selected{% endif %}>English</option>
+                <option value="mal" {% if request.GET.language == 'mal' %}selected{% endif %}>Malayalam</option>
+                <option value="ara" {% if request.GET.language == 'ara' %}selected{% endif %}>Arabic</option>
+            </select>
+            <button type="submit">Apply Filter</button>
+        </div>
+    </form>
+
+
+      {% for product in product %}
+                                                    <div class="col-md-4 col-sm-6">
+                                                        {% comment %} <a href="{% url 'web:shop_details' product.id %}"> {% endcomment %}
+                                                        <div class="product-box product-box-hover-down bg--white color-1">
+                                                            <div class="product-box__img">
+                                                                <img src="{{product.image.url}}" alt="product" class="primary-image">
+                                                                <img src="{{product.image.url}}" alt="product" class="secondary-image">
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#productModal" class="product-box__quick-view"><i class="fa fa-search"></i></a>
+                                                            </div>
+                                                            <div class="product-box__content">
+                                                                <h3 class="product-box__title"><a href="single-product.html">{{product.name}}</a></h3>
+                                                                <div class="ratings">
+                                                                    <p>{{product.author}},{{product.year}}</p>
+                                                                </div>
+                                                                <div class="product-box__price">
+                                                                    <span class="regular-price">{{product.language}}</span>
+                                                                    <span class="sale-price">{{product.price}}</span>
+                                                                </div>
+                                                            </div>
+                                                            {% comment %} <div class="product-box__action action-2">
+                                                                <a href="wishlist.html" class="add-to-wishlist" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to wishlist"><i class="fa fa-heart-o"></i></a>
+                                                                <a href="cart.html" class="add-to-cart" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to cart"><i class="fa fa-shopping-bag"></i> add to cart</a>
+                                                                <a href="compare.html" class="add-to-compare" data-bs-toggle="tooltip" data-bs-placement="top" title="Add to compare"><i class="fa fa-refresh"></i></a>
+                                                            </div> {% endcomment %}
+                                                        </div>
+                                                    </a>
+                                                    </div>
+                                                    {% endfor %}
+
+
+       
+        {% comment %} <div class="box">
+          <div class="name">
+            <h6>
+              Diamond Ring
+            </h6>
+          </div>
+          <div class="img-box">
+            <img src="{% static 'web/images/i-2.png' %}" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+              $<span>1000.00</span>
+            </h5>
+            <a href="">
+              Buy Now
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <div class="name">
+            <h6>
+              Diamond Ring
+            </h6>
+          </div>
+          <div class="img-box">
+            <img src="{% static 'web/images/i-3.png' %}" alt="">
+          </div>
+          <div class="detail-box">
+            <h5>
+              $<span>1000.00</span>
+            </h5>
+            <a href="">
+              Buy Now
+            </a>
+          </div>
+        </div> {% endcomment %}
+      </div>
+      <div class="d-flex justify-content-center">
+        <a href="" class="price_btn">
+          See More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- end price section -->
+
+
+
+
+
+  <!-- info section -->
+  <section class="info_section ">
+    <div class="container">
+      <div class="info_container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="info_logo">
+              <a href="">
+                <img src="{% static 'web/images/shoe-mart.png' %}" alt="">
+                <span>
+                  SHOP MART
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="info_contact">
+              <a href="">
+                <img src="{% static 'web/images/location.png' %}" alt="">
+                <span>
+                  Address
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="info_contact">
+              <a href="">
+                <img src="{% static 'web/images/phone.png' %}" alt="">
+                <span>
+                  +01 1234567890
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="info_contact">
+              <a href="">
+                <img src="{% static 'web/images/mail.png' %}" alt="">
+                <span>
+                  demo@gmail.com
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="info_form">
+          <div class="d-flex justify-content-center">
+            <h5 class="info_heading">
+              Newsletter
+            </h5>
+          </div>
+          <form action="">
+            <div class="email_box">
+              <label for="email2">Enter Your Email</label>
+              <input type="text" id="email2">
+            </div>
+            <div>
+              <button>
+                subscribe
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="info_social">
+          <div class="d-flex justify-content-center">
+            <h5 class="info_heading">
+              Follow Us
+            </h5>
+          </div>
+          <div class="social_box">
+            <a href="">
+              <img src="{% static 'web/images/fb.png' %}" alt="">
+            </a>
+            <a href="">
+              <img src="{% static 'web/images/twitter.png' %}" alt="">
+            </a>
+            <a href="">
+              <img src="{% static 'web/images/linkedin.png' %}" alt="">
+            </a>
+            <a href="">
+              <img src="{% static 'web/images/insta.png' %}" alt="">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info_section -->
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <p>
+      &copy; <span id="displayYear"></span> All Rights Reserved By
+      <a href="https://html.design/">Free Html Templates</a>
+    </p>
+  </section>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>
